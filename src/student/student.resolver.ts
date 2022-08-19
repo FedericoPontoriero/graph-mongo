@@ -8,6 +8,11 @@ import { StudentService } from './student.service';
 export class StudentResolver {
   constructor(private studentService: StudentService) {}
 
+  @Query((returns) => [StudentType])
+  async students() {
+    return this.studentService.getStudents();
+  }
+
   @Mutation((returns) => StudentType)
   async createStudent(
     @Args('createStudentInput') createStudentInput: CreateStudentInput,
